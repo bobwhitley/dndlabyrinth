@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="stylesheet" href="./css/main.css" />
+        <script type="application/javascript" src="./js/main.js" defer></script>
+        <link rel="canonical" href="https://dndlabyrinth.com/" />
+        <link rel="icon" type="image/jpg" href="./icons/icon128x128.jpg" sizes="128x128">
+        <link rel="icon" type="image/jpg" href="./icons/icon152x152.jpg" sizes="152x152">
+        <link rel="icon" type="image/jpg" href="./icons/icon167x167.jpg" sizes="167×167">
+        <link rel="icon" type="image/jpg" href="./icons/icon180x180.jpg" sizes="180×180">
+        <link rel="icon" type="image/jpg" href="./icons/icon192x192.jpg" sizes="192×192">
+        <link rel="icon" type="image/jpg" href="./icons/icon196x196.jpg" sizes="196×196">
+        <meta name="description" content="This game is a simulation of the Mattel Electronics&trade; Dungeons and Dragons&trade; Computer Labyrinth Game"/>
+        <meta property="og:url" content="https://dndlabyrinth.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dungeons &amp; Dragons&trade; Computer Labyrinth Game Simulator" />
+        <meta property="og:description" content="This game is a simulation of the Mattel Electronics&trade; Dungeons and Dragons&trade; Computer Labyrinth Game" />
+        <meta property="og:image" content="https://dndlabyrinth.com/images/featuredImage.jpg" />
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "WebApplication",
+                "name": "Dungeons & Dragons&trade; Computer Labyrinth Game Simulator",
+                "url": "https://dndlabyrinth.com",
+                "description": "This game is a simulation of the Mattel Electronics&trade; Dungeons and Dragons&trade; Computer Labyrinth Game",
+                "applicationCategory": "Game",
+                "author":{
+                    "@type": "Person",
+                    "name": "Bob Whitley"
+                },
+                "genre": "Board Game",
+                "browserRequirements": "ECMAScript version 6 and HTML5",
+                "softwareVersion": "1.0.0",
+                "operatingSystem": "All"
+            }
+        </script>
+        <title>Dungeons &amp; Dragons&trade; Computer Labyrinth Game Simulator</title>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B171BVLV8D"></script>
+        <script>
+            if (window.location && window.location.hostname == "dndlabyrinth.com") {
+                window.gaEnabled = true;
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-B171BVLV8D');
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            <div id="intro">
+                <div id="header">
+                    <h1>Dungeons &amp; Dragons&trade;<br/>Computer Labyrinth Game<br/>Simulator</h1>
+                </div>
+                <p>
+                    This game is a simulation of the Dungeons and Dragons&trade; Computer Labyrinth Game&trade; 
+                    made by <a rel="noopener" href="https://www.mattel.com/en-us" target="_blank">Mattel Electronics</a>&trade; released in 1980.
+                </p>
+                <p>
+                    I owned this game back in 1981 when I was 11 years old and only recently rediscovered it so I 
+                    thought it would be a fun project to recreate it on the internet for others to enjoy.
+                </p>
+                <p>
+                    To play the game simply press the play button below. If you are new to the game I recommend reading the 
+                    original <a href="./assets/gameManual.pdf" target="_blank">game manual</a> to get familiar with the game play. 
+                    The game relies on sound queues for play so be sure to have your speakers turned on or enable the in-game 
+                    help messages. 
+                </p>
+                <p>
+                    Enjoy! 
+                </p>
+                <p class="subtext">
+                    Images of the game, the manual, game pieces, artwork and any audio are copyright of <a rel="noopener" href="https://www.mattel.com/en-us" target="_blank">Mattel</a>&trade;
+                    <br/>
+                    Dungeons and Dragons&trade; is copyright of <a rel="noopener" href="https://company.wizards.com/" target="_blank">Wizards of the Coast</a>&trade; 
+                </p>
+            </div>
+            <div id="container">
+                <div id="start"><div class="text">Click to Play</div></div>
+                <div id="board"></div>
+                <div id="menu">
+                    <div id="menuLeft">
+                        <a id="exit">&laquo; Exit</a>
+                    </div>
+                    <div id="menuCenter">
+                        <button id="reset">Reset</button>
+                    </div>
+                    <div id="menuRight">
+                        <input id="help" type="checkbox" value="help" /> <label for="help">Show Help</label> 
+                    </div>
+                </div>
+                <div id="helpMessage"></div>
+            </div>
+        </main>
+    </body>
+</html>

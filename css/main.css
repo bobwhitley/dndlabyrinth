@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100%;
+    touch-action: manipulation;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: rgb(203 203 203);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    font-size: 14px;
+}
+input {
+    font-size: 14px;
+}
+button {
+    font-size: 14px;
+}
+body.play {
+    overflow: hidden;
+}
+main {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+body.play main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+a, a:visited, a:active {
+    color: #fff;
+    text-decoration: underline;;
+}
+a:hover, a:active {
+    color: rgb(185 54 61);
+}
+#intro {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 640px;
+    max-height: 1000px;
+    text-align: center;
+    opacity: 1;
+    padding: 20px 20px;
+    transition: max-height 250ms, opacity 250ms, padding 250ms;
+}
+body.play #intro {
+    border: solid 0 transparent;
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+}
+#intro #header {
+    border: solid 3px rgb(185 54 61);
+    border-radius: 10px;
+    padding: 5px 50px;
+    background: #242424;
+    text-shadow: 3px 3px 1px rgb(0 0 0);
+    margin: 0 auto 30px auto;
+    display: inline-block;
+    background-image: url('../images/dragonBackground.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#intro #header h1 {
+    font-family: MedievalSharp;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.3em;
+}
+#intro .subtext {
+    color: #999;
+    font-size: .75em;
+}
+#intro .subtext a {
+    color: #999
+}
+#intro .subtext a:hover, a:active {
+    color: rgb(185 54 61);
+}
+#intro .subtext a:hover, a:active {
+    color: rgb(185 54 61);
+}
+#container {
+    position: relative;
+    display: block;
+    width: 90vmin;
+    height: 30%;
+    margin: 0 auto;
+    transition: width 250ms, height 250ms, margin 250ms;
+}
+body.play #container {
+    height: 90vmin;
+    margin: auto;
+}
+#start {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background-color: rgba(0,0,0,.7);
+    text-align: center;
+    cursor: pointer;
+    align-content: center;
+    justify-content: center;
+}
+#start .text {
+    background-color: 242424;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 700;
+    border: solid 3px rgb(185 54 61);
+    z-index: 10001;
+    box-shadow: 0px 0px 20px 5px black;
+    display: inline-block;
+    margin: auto;
+    font-family: 'MedievalSharp';
+    text-shadow: 3px 3px 1px rgb(0 0 0);
+    vertical-align: middle;
+    letter-spacing: normal;
+    color: #fff;
+}
+body.play #start {
+    display: none;
+}
+#board {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    margin: 0;
+    background-image: url('../images/board.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: width 250ms ease-in-out, height 250ms ease-in-out, margin 250ms ease-in-out;
+}
+body.play #home {
+    display: flex;
+}
+#menu {
+    display: none;
+    flex-direction: row;
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    padding: 5px;
+    align-items: center;
+    color: #bebebe;
+}
+#menuLeft {
+    display: flex;
+    width: 30%;
+    justify-content: flex-start;
+}
+#menuCenter {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+#menuRight {
+    display: flex;
+    width: 30%;
+    justify-content: flex-end;
+}
+#menu a, #menu a:visited {
+    text-decoration: none;
+    cursor: pointer;
+    color: #bebebe;
+}
+#menu a:hover, #menu a:active {
+    color: rgb(185 54 61);
+    text-decoration: underline;
+}
+#menu button {
+    color: #bebebe;
+    border: solid 2px rgb(185 54 61);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.7);
+    padding: 3px 15px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 250ms;
+}
+#menu button:hover {
+    background-color: rgba(185, 54, 61, .6);
+    color: #fff;
+}
+#menu input[type=checkbox] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+#menu label {
+    cursor: pointer;
+}
+body.play #menu {
+    display: flex;
+}
+#helpMessage {
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    margin: 0 0 10px 0;
+    transition: opacity 250ms;
+}
+body.play #helpMessage.show {
+    opacity: 1;
+}
+#grid {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    height: 90vmin;
+    width: 90vmin;
+    margin: auto;
+}
+body.play #grid {
+    display: block;
+}
+#grid .row {
+    display: flex;
+    flex-direction: row;
+}
+#grid .col {
+    display: flex;
+    width: 7.7vmin;
+    height: 7.4vmin;
+    margin: 0;
+    border-radius: 1px;
+    transition: box-shadow 100ms ease-in-out;
+}
+#grid .cell {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1000;
+}
+#grid .row:first-child {
+    margin-top: 21.2vmin;
+}
+#grid .button {
+    margin-left: 11vmin;
+    margin-right: 1.7vmin;
+}
+#grid .button.switch .cell {
+    margin: 1.7vmin 1.3vmin .9vmin 1.3vmin;
+    border-radius: .25vmin;
+    transition: box-shadow 250ms, background-color 250ms;
+}
+#grid .button.selected .cell {
+    box-shadow: 0 0 1vmin 0.5vmin rgb(255 80 80);
+    background-color: rgba(255,180,180,.5);
+}
+#grid .button, #grid .chamber {
+    cursor: pointer;
+    position: relative;
+}
+#grid .chamber .southWall {
+    visibility: hidden;
+    width: 100%;
+    position: absolute;
+    bottom: -1vmin;
+    left: 0;
+    height: 1.9vmin;
+    display: block;
+    z-index: 10;
+    background-image: url('../images/southWall.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#grid .chamber .eastWall {
+    visibility: hidden;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1.1vmin;
+    width: 2vmin;
+    display: block;
+    z-index: 10;
+    background-image: url('../images/eastWall.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#grid .chamber .secretRoomOne, #grid .chamber .secretRoomTwo, #grid .chamber .treasureRoom {
+    position: absolute;
+    left: 1vmin;
+    top: 1.3vmin;
+    right: 1.1vmin;
+    bottom: 1.2vmin;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#grid .chamber .secretRoomOne {
+    background-image: url('../images/warriorOneMarker.png');
+}
+#grid .chamber .secretRoomTwo {
+    background-image: url('../images/warriorTwoMarker.png');
+}
+#grid .chamber .treasureRoom {
+    background-image: url('../images/treasureMarker.png');
+}
+#grid .chamber .warriorOne, #grid .chamber .warriorTwo, #grid .chamber .dragon, #grid .chamber .treasure {
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1vmin;
+}
+#grid .chamber .warriorOne, #grid .chamber .warriorTwo {
+    display: none;
+    height: 11vmin;
+}
+.gameStarted #grid .chamber .warriorOne, .gameStarted #grid .chamber .warriorTwo {
+    display: block;
+}
+#grid .chamber .warriorOne {
+    background-size: auto 90%;
+    background-image: url("../images/warriorOne.png");
+}
+#grid .chamber .warriorTwo {
+    background-size: auto 100%;
+    background-image: url("../images/warriorTwo.png");
+}
+#grid .chamber .dragon {
+    background-size: auto 100%;
+    height: 14vmin;
+    background-image: url("../images/dragon.png");
+}
+#grid .chamber .treasure {
+    background-size: auto 100%;
+    height: 10vmin;
+    background-image: url("../images/treasure.png");
+}
+#grid .chamber .treasure.withWarrior {
+    transform: translate(1.7vmin, 2.9vmin) scale(.5);
+}
+
+body.debug #container.layoutDebug #grid .col.button, body.debug #container.layoutDebug #grid .col.chamber {
+    background-color: rgba(0,0,0,.4);
+}
+body.debug #grid .cell.northWallDebug {
+    border-top: solid .5vmin #eee;
+}
+body.debug #grid .cell.eastWallDebug {
+    border-right: solid .5vmin #eee;
+}
+body.debug #grid .cell.southWallDebug {
+    border-bottom: solid .5vmin #eee;
+}
+body.debug #grid .cell.westWallDebug {
+    border-left: solid .5vmin #eee;
+}
+body.debug #grid .cell.northDoorDebug {
+    border-top: dotted .5vmin #eee;
+}
+body.debug #grid .cell.eastDoorDebug {
+    border-right: dotted .5vmin #eee;
+}
+body.debug #grid .cell.southDoorDebug {
+    border-bottom: dotted .5vmin #eee;
+}
+body.debug #grid .cell.westDoorDebug {
+    border-left: dotted .5vmin #eee;
+}
+body.debug #grid .cell.northOpenDebug {
+    border-top: dotted .5vmin rgba(255,255,255,.25);
+}
+body.debug #grid .cell.eastOpenDebug {
+    border-right: dotted .5vmin rgba(255,255,255,.25);
+}
+body.debug #grid .cell.southOpenDebug {
+    border-bottom: dotted .5vmin rgba(255,255,255,.25);
+}
+body.debug #grid .cell.westOpenDebug {
+    border-left: dotted .5vmin rgba(255,255,255,.25);
+}
+body.debug #grid .chamber.traveledDebug .cell {
+    background-color: rgba(0,0,255,.4);
+}
+body.debug #grid .chamber.travelingDebug .cell {
+    background-color: rgba(255,0,0,.4);
+}
+body.debug #grid .chamber.treasureOptionDebug .cell {
+    background-color: rgba(255,215,0,.4);
+}
+body.debug #grid .chamber.treasureDebug .cell {
+    background-color: rgba(255,215,0, .6);
+}
+body.debug #grid .chamber .dragon {
+    display: block;
+}
