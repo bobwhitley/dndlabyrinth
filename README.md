@@ -1,4 +1,5 @@
 # Dungeons &amp; Dragons&trade; Computer Labyrinth Game Simulator
+## Version 1.1
 
 This game is a simulation of the Mattel Electronics&trade; Dungeons and Dragons&trade; Computer Labyrinth Game
 

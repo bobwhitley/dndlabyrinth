@@ -1,4 +1,5 @@
 var labyrinth = {
+    VERSION: 1.1,
     DIR_TYPE: {
         North: 0,
         East: 1,
@@ -664,6 +665,8 @@ var labyrinth = {
                 } else if (this.game.state == this.GAME_STATE.WarriorOneTurn || this.game.state == this.GAME_STATE.WarriorTwoTurn) {
                     let warriorNumber = this.game.state == this.GAME_STATE.WarriorOneTurn ? 0 : 1;
                     this.warriorMoving(warriorNumber, chamber);
+                } else if (this.game.state == this.GAME_STATE.GameOver) {
+                    this.log("Ignoring selection since game is over");
                 }
             }
         }
@@ -789,13 +792,15 @@ var labyrinth = {
         }
     },
     finishWarriorTurn(currentWarrior) {
-        if (currentWarrior == 0 && this.game.numberOfWarriors == 2 && this.game.warrior[1].lives > 0) {
-            this.warriorTurn(1);
-        }
-        else {
-            this.moveDragon().then(() => {
-                this.warriorTurn(this.game.warrior[0].lives > 0 ? 0 : 1);
-            });
+        if (this.game.state != this.GAME_STATE.GameOver) {
+            if (currentWarrior == 0 && this.game.numberOfWarriors == 2 && this.game.warrior[1].lives > 0) {
+                this.warriorTurn(1);
+            }
+            else {
+                this.moveDragon().then(() => {
+                    this.warriorTurn(this.game.warrior[0].lives > 0 ? 0 : 1);
+                });
+            }
         }
     },
     checkDragonWakes(warriorNumber) {
@@ -956,18 +961,22 @@ var labyrinth = {
                 this.renderDragonPosition();
             }
             this.playAudio(warriorNumber == 0 ? this.audio.warriorOne : this.audio.warriorTwo).then(() => {
-                this.completeAttack(warriorNumber, resolve);
+                this.completeAttack(warriorNumber).then(() => {
+                    resolve();
+                });
             });
         });
     }, 
-    completeAttack(warriorNumber, resolve) {
-        if (this.game.treasure.warrior == warriorNumber) this.game.treasure.warrior = -1;
-        this.playAudio(this.audio.dragonAttacks).then(() => {
-            this.help("");
-            this.renderTreasurePosition();
-            this.removeLife(warriorNumber).then(() => {
-                resolve();
-            })
+    completeAttack(warriorNumber) {
+        return new Promise((resolve, reject) => {
+            if (this.game.treasure.warrior == warriorNumber) this.game.treasure.warrior = -1;
+            this.playAudio(this.audio.dragonAttacks).then(() => {
+                this.help("");
+                this.renderTreasurePosition();
+                this.removeLife(warriorNumber).then(() => {
+                    resolve();
+                })
+            });
         });
     },
     removeLife(warriorNumber) {
@@ -992,16 +1001,16 @@ var labyrinth = {
     killWarrior(warriorNumber) {
         return new Promise((resolve, reject) => {
             let message = "Warrior " + this.numToText(warriorNumber) + " has been killed!";
+            if (this.game.warrior[0].lives < 1 && (this.game.numberOfWarriors == 1 || this.game.warrior[1].lives < 1)) {
+                this.game.state = this.GAME_STATE.GameOver;
+                this.trackEvent("Game Lost");
+            }
             this.trackEvent("Warrior Killed");
             this.help(message, true);
             this.log(message);
             this.playAudio(this.audio.defeat).then(() => {
                 this.removeWarrior(warriorNumber);
                 this.removeSecretRoom(warriorNumber);
-                if (this.game.warrior[0].lives == 0 && (this.game.numberOfWarriors == 1 || this.game.warrior[1].lives == 0)) {
-                    this.game.state = this.GAME_STATE.GameOver;
-                    this.trackEvent("Game Lost");
-                }
                 resolve();
             });
         });
